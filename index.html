@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Malioboro - Adpel &amp; Kepin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="scene">
+  <!-- langit -->
+  <div class="sky v-day fade"></div>
+  <div class="sky v-night fade"></div>
+  <div class="sky v-pagi fade"></div>
+  <div class="sky v-senja fade"></div>
+  <div class="stars fade" id="stars" data-px="2"></div>
+  <div class="sun fade" data-px="3"></div>
+  <div class="moon fade" data-px="3"></div>
+  <div class="clouds" id="clouds" data-px="4">
+    <div class="cloud" style="top:7vh;  animation-duration:120s; animation-delay:-20s"></div>
+    <div class="cloud" style="top:15vh; animation-duration:160s; animation-delay:-90s; transform-origin:left; scale:.8"></div>
+    <div class="cloud" style="top:4vh;  animation-duration:140s; animation-delay:-60s; scale:1.2"></div>
+    <div class="cloud" style="top:20vh; animation-duration:190s; animation-delay:-130s; scale:.65"></div>
+  </div>
+
+  <canvas id="skyfx" class="skyfx"></canvas>
+  <canvas id="batfx" class="skyfx"></canvas>
+
+  <!-- Gunung Merapi di kejauhan -->
+  <svg class="merapi" data-px="6" viewBox="0 0 400 220" preserveAspectRatio="xMaxYMax meet" aria-hidden="true">
+    <path class="m" d="M0 220 L120 104 L150 86 L168 72 L182 66 L198 72 L216 86 L252 112 L400 220 Z"/>
+    <path class="m2" d="M0 220 L90 150 L150 128 L230 150 L330 190 L400 220 Z"/>
+    <defs><radialGradient id="lavaGlow"><stop offset="0" stop-color="#ff9a3a" stop-opacity=".75"/><stop offset=".5" stop-color="#ff5a1f" stop-opacity=".28"/><stop offset="1" stop-color="#ff5a1f" stop-opacity="0"/></radialGradient></defs>
+    <g class="lava" shape-rendering="crispEdges">
+      <ellipse class="lglow" cx="184" cy="69" rx="30" ry="17" fill="url(#lavaGlow)"/>
+      <g fill="none" stroke-linecap="square" stroke-linejoin="miter">
+        <polyline class="lbase" points="190,70 204,80 214,90 226,100 236,112 244,124"/>
+        <polyline class="lbase" points="178,69 170,78 160,92 150,104"/>
+        <polyline class="lbase" points="186,70 188,82 194,94"/>
+        <polyline class="lhot" points="190,70 204,80 214,90 226,100 236,112 244,124"/>
+        <polyline class="lhot l2" points="178,69 170,78 160,92 150,104"/>
+        <polyline class="lhot l3" points="186,70 188,82 194,94"/>
+      </g>
+      <ellipse class="lcore" cx="184" cy="67" rx="7" ry="2.4"/>
+      <circle class="ember" cx="181" cy="64" r=".9"/><circle class="ember e2" cx="187" cy="64" r=".8"/>
+      <circle class="ember e3" cx="184" cy="63" r="1"/><circle class="ember e4" cx="190" cy="65" r=".8"/>
+    </g>
+    <ellipse class="smoke" cx="190" cy="54" rx="17" ry="9"/>
+    <ellipse class="smoke" cx="203" cy="40" rx="13" ry="7"/>
+    <ellipse class="smoke" cx="214" cy="29" rx="10" ry="5"/>
+    <ellipse class="smoke xtra" cx="200" cy="63" rx="15" ry="7"/>
+    <ellipse class="smoke xtra" cx="226" cy="19" rx="11" ry="5"/>
+    <ellipse class="smoke xtra" cx="240" cy="11" rx="13" ry="6"/>
+  </svg>
+
+
+  <!-- lapisan jalan -->
+  <div class="layer far v-day fade" data-px="12"></div>
+  <div class="layer far v-night fade" data-px="12"></div>
+  <div class="fog mount" id="fogMount" data-px="16"></div>
+  <div class="layer shops v-day fade" data-px="22"></div>
+  <div class="layer shops v-night fade" data-px="22"></div>
+  <canvas id="fireflyfx" class="skyfx"></canvas>
+  <div class="layer ground v-day fade"></div>
+  <div class="layer ground v-night fade"></div>
+  <div class="fog road" id="fogRoad"></div>
+  <div class="wet" id="wet"></div>
+  <canvas id="rainFar" class="rainfx far"></canvas>
+
+  <!-- karakter -->
+  <div id="actors" class="actors"></div>
+  <canvas id="leaffx" class="rainfx leaf"></canvas>
+
+  <div class="tod pagi"></div>
+  <div class="tod senja"></div>
+  <div class="vignette"></div>
+  <canvas id="rainNear" class="rainfx near"></canvas>
+  <div class="raindim"></div>
+  <div class="flash" id="flash"></div>
+</div>
+
+<div class="sign">JL. MALIOBORO<small>YOGYAKARTA</small></div>
+<div class="hint">Klik karakter untuk menyapa &middot; klik kucing untuk mengelus &middot; gerakkan mouse untuk menggeser pandangan</div>
+<div class="toast" id="toast"></div>
+<div class="hudnote" id="hudNote">Tekan H, Esc, atau ketuk pojok kanan bawah untuk menampilkan tombol lagi</div>
+<div class="hudback" id="hudBack" aria-label="Tampilkan kembali"></div>
+
+<div class="toolbar" id="toolbar">
+  <button id="btnTime" class="px" title="Ganti siang / malam" aria-label="Ganti siang atau malam"></button>
+  <span class="sep"></span>
+  <button id="btnRide" class="px" title="Panggil andong atau becak" aria-label="Panggil andong atau becak"></button>
+  <button id="btnRain" class="px" title="Hujan" aria-label="Hujan"></button>
+  <button id="btnSound" class="px" title="Suara suasana: hujan, petir, andong, becak" aria-label="Suara suasana" aria-pressed="false"></button>
+  <button id="btnHud" class="px" title="Sembunyikan tampilan (tekan H untuk menampilkan lagi)" aria-label="Sembunyikan tampilan"></button>
+  <button id="btnReset" class="px" title="Reset" aria-label="Reset"></button>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
