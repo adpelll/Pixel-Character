@@ -215,11 +215,11 @@
 
   const VEH_LINES = {
     andong: ["Monggo naik andong!", "Keliling Malioboro, Mbak?", "Hayo, Jaran, jalan!", "Andong, Mas? Murah kok!"],
-    becak: ["Becak, Mas?", "Diantar ke Tugu, Mbak?", "Monggo, monggo!", "Permisi, permisi!"],
+    becak: ["Becak, Mas?", "Diantar ke Tugu, Mas?", "Monggo, monggo!", "Permisi, permisi!"],
   };
   const VEH_TAP = {
     andong: ["Hihihii~", "Klip-klop, klip-klop", "Jarannya lagi semangat!", "Monggo naik, Mas!"],
-    becak: ["Ting-ting!", "Becak, Mas?", "Santai, Mas, pelan-pelan", "Monggo, Mbak!"],
+    becak: ["Ting-ting!", "Becak, Mas?", "Santai, Mas, pelan-pelan", "Monggo, Mas!"],
   };
 
   // obrolan di angkringan
@@ -241,7 +241,7 @@
     ["Dengerin rintik hujannya deh", "Bikin ngantuk ya, hehe"],
     ["Genangannya makin banyak", "Jangan lompat-lompat ya"],
     ["Hujan begini enaknya gorengan", "Sama wedang jahe hangat"],
-    ["Semoga cepat reda ya", "Ah, aku suka kok hujannya"],
+    ["Semoga cepat reda ya", "Hujannya bikin sejuk"],
   ];
   const RAIN_SOLO = ["Brr, dingin...", "Hujannya awet nih", "Tenang ya dengar rintik hujan", "Lampunya cantik kena hujan"];
 
